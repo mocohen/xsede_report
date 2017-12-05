@@ -1,0 +1,60 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module run_setup</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>run_setup</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/morris/Documents/Github/xsede_report/source/run_setup.py">/Users/morris/Documents/Github/xsede_report/source/run_setup.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;script&nbsp;will&nbsp;setup&nbsp;the&nbsp;xsede&nbsp;usage&nbsp;database<br>
+In&nbsp;order&nbsp;to&nbsp;run&nbsp;this&nbsp;script,&nbsp;you&nbsp;will&nbsp;need&nbsp;two&nbsp;files:&nbsp;'gather.dat'&nbsp;and&nbsp;'setup.dat'</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="errno.html">errno</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="sqlite3.html">sqlite3</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-create_db"><strong>create_db</strong></a>(db_conn)</dt><dd><tt>Create&nbsp;Database&nbsp;file&nbsp;with&nbsp;tables<br>
+&nbsp;<br>
+Args:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db_file_conn&nbsp;(db&nbsp;connection):&nbsp;connection&nbsp;to&nbsp;database</tt></dd></dl>
+ <dl><dt><a name="-get_norm_total"><strong>get_norm_total</strong></a>(machine_dict, machine_names, service_units)</dt><dd><tt>Get&nbsp;normalized&nbsp;SU&nbsp;total&nbsp;from&nbsp;many&nbsp;machines<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;machine_dict&nbsp;(dictionary):&nbsp;dictionary&nbsp;of&nbsp;machines&nbsp;with&nbsp;conversion&nbsp;factors<br>
+&nbsp;&nbsp;&nbsp;&nbsp;service_units&nbsp;(array-like):&nbsp;SUs&nbsp;for&nbsp;each&nbsp;machine<br>
+&nbsp;&nbsp;&nbsp;&nbsp;machine_names&nbsp;(array-like):&nbsp;names&nbsp;of&nbsp;machines&nbsp;to&nbsp;get&nbsp;total&nbsp;from<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;total(float):&nbsp;value&nbsp;for&nbsp;total&nbsp;number&nbsp;of&nbsp;normalized&nbsp;computing&nbsp;units.</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>This&nbsp;script&nbsp;will&nbsp;setup&nbsp;the&nbsp;database&nbsp;for&nbsp;the&nbsp;XSEDE&nbsp;Usage&nbsp;Report<br>
+Please&nbsp;check&nbsp;to&nbsp;make&nbsp;sure&nbsp;the&nbsp;user&nbsp;input&nbsp;variables&nbsp;below&nbsp;are&nbsp;correct<br>
+Note:&nbsp;This&nbsp;script&nbsp;should&nbsp;only&nbsp;be&nbsp;used&nbsp;at&nbsp;the&nbsp;beginning&nbsp;of&nbsp;the&nbsp;year</tt></dd></dl>
+ <dl><dt><a name="-read_setup_file"><strong>read_setup_file</strong></a>(setup_file)</dt><dd><tt>Read&nbsp;setup&nbsp;file<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;setup_file&nbsp;(string):&nbsp;name&nbsp;of&nbsp;file&nbsp;to&nbsp;read&nbsp;in<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;machine_dict&nbsp;(dictionary):&nbsp;dictionary&nbsp;of&nbsp;machines&nbsp;with&nbsp;conversion&nbsp;factors</tt></dd></dl>
+ <dl><dt><a name="-read_xdusage_output"><strong>read_xdusage_output</strong></a>(input_file, db_conn, machine_dict, current_date, setup<font color="#909090">=False</font>)</dt></dl>
+ <dl><dt><a name="-run"><strong>run</strong></a>(db_file, xdusage_file, setup_file, current_date, setup<font color="#909090">=False</font>)</dt></dl>
+</td></tr></table>
+</body></html>
