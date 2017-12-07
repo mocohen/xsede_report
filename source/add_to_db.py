@@ -11,20 +11,6 @@ import numpy as np
 import sqlite3
 
 
-def main():
-    """ This script will setup the database for the XSEDE Usage Report
-    Please check to make sure the user input variables below are correct
-    Note: This script should only be used at the beginning of the year
-    """
-
-    dbFile = 'xsede_hours.db'
-    xdusageFile = 'gather.dat'
-    setupFile = 'example_setup.dat'
-    currentDate = datetime.now()
-    run(db_file=dbFile, xdusage_file=xdusageFile,
-        setup_file=setupFile, current_date=currentDate, setup=True)
-
-
 def run(db_file, xdusage_file, setup_file, current_date, setup=False):
     descriptionString = ''' This script will setup the database for the XSEDE Usage Report\n
     Please check to make sure the user input variables below are correct\n
@@ -185,7 +171,3 @@ def read_setup_file(setup_file):
                 print(split[0])
         print('\n')
     return machine_dict
-
-
-if __name__ == '__main__':
-    main()
