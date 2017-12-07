@@ -60,14 +60,14 @@ def get_norm_total(machine_dict, machine_names, service_units):
         return total
 
     for i, machine_name in enumerate(machine_names):
-        conversion_factor = machine_dict[machine_name][1]
+        conversion_factor = machine_dict[machine_name]['conversionFactor']
         total += conversion_factor * service_units[i]
     return total
 
 
 def read_xdusage_output(input_file, db_conn, machine_dict, current_date, setup=False):
     print "hello"
-    date_string_format = "%Y-%m-%d"
+    date_string_format = "%Y-%m-%d %H:%M:%S.000"
 
     current_date_string = current_date.strftime(date_string_format)
 
@@ -166,8 +166,9 @@ def read_setup_file(setup_file):
         for line in fp:
             if len(line.strip()) > 0 and line[0] is not '#':
                 split = line.split(',')
-                machine_dict[split[0].strip()] = (
-                    split[1].strip(), float(split[2].strip()))
+                machine_dict[split[0].strip()] = \
+                    dict('outName': split[1].strip(),
+                         'conversionFactor': float(split[2].strip()))
                 print(split[0])
         print('\n')
     return machine_dict
