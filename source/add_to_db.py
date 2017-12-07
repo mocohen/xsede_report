@@ -167,8 +167,8 @@ def read_setup_file(setup_file):
             if len(line.strip()) > 0 and line[0] is not '#':
                 split = line.split(',')
                 machine_dict[split[0].strip()] = \
-                    dict('outName': split[1].strip(),
-                         'conversionFactor': float(split[2].strip()))
+                    dict([('outName', split[1].strip()),
+                          ('conversionFactor', float(split[2].strip()))])
                 print(split[0])
         print('\n')
     return machine_dict
