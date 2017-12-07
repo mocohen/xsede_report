@@ -34,8 +34,6 @@ def run(db_file, setup_file, output_path):
     last_dates = get_last_two_dates(conn)
     prev_usage = get_user_usage_on_date(conn, machine_dict, last_dates[0])
     current_usage = get_user_usage_on_date(conn, machine_dict, last_dates[1])
-    # print prev_usage['Comet']
-    # print current_usage['Comet']
     change_usage = calc_difference_in_usage(
         machine_dict, first_usage=prev_usage, second_usage=current_usage)
     percent_user_usage = calc_users_percent_usage(machine_dict, current_usage)
@@ -179,7 +177,6 @@ def calc_difference_in_usage(machine_dict, first_usage, second_usage):
 
 
 def calc_table_data(user_names, usages, num_entries=5):
-    print len(user_names), len(usages)
     table_data = []
     for i in range(num_entries):
         table_data.append((user_names[i].split()[0], usages[i]))
@@ -202,7 +199,6 @@ def plot_figures(machine_dict, machine_usage, change_user_usage, percent_user_us
                            machine_usage[machine_name]['usage'],
                            final_time_delta)
 
-        print machine_name, machine_usage[machine_name]['usage'][-1], machine_usage[machine_name]['usage'][-0]
         if machine_usage[machine_name]['usage'][-1] - machine_usage[machine_name]['usage'][0] == 0:
             ax3.xaxis.set_visible(False)
             ax3.yaxis.set_visible(False)
@@ -227,7 +223,6 @@ def plot_figures(machine_dict, machine_usage, change_user_usage, percent_user_us
 
 
 def plot_machine_usage(axi, machine_name, machine_title, machine_dates, machine_usage, final_date_delta, hours_scale_factor=1e-3):
-    print machine_name
     initial_SU = machine_usage[0] * hours_scale_factor
     final_date = machine_dates[0] + final_date_delta
     ideal_dates = [machine_dates[0], final_date]
