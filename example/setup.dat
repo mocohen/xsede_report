@@ -1,0 +1,6 @@
+#xdusage_name   		output_name     NU_conversion_factor
+bridges-gpu.psc.xsede,		Bridges: GPU,	1862.260
+bridges.psc.xsede,			Bridges: RM,	133.019
+comet.sdsc.xsede,			Comet,			133
+stampede2.tacc.xsede,    	Stampede2,		3100.940
+supermic.cct-lsu.xsede,   	Supermic,		99.230
