@@ -18,9 +18,13 @@ def run(db_file, xdusage_file, setup_file, current_date, setup=False):
     print(descriptionString)
 
     print('database file: ' + db_file)
-    assert not os.path.isfile(db_file), \
-        'Fatal Error: database file %s already exists. Please remove before continuing' % db_file
-
+    if setup:
+        assert not os.path.isfile(db_file), \
+            'Fatal Error: database file %s already exists. Please remove before continuing' % db_file
+    else:
+        assert os.path.isfile(db_file), \
+            'Fatal Error: database file %s already exists. Please remove before continuing' % db_file
+    
     print('xdusage file name: ' + xdusage_file)
     assert os.path.isfile(
         xdusage_file), 'Fatal Error: Cannot find file %s' % xdusage_file
@@ -35,7 +39,7 @@ def run(db_file, xdusage_file, setup_file, current_date, setup=False):
 
     #date_string_format = "%Y-%m-%d"
     read_xdusage_output(xdusage_file, conn, machine_dict,
-                        current_date, setup=True)
+                        current_date, setup=setup)
 
     conn.close()
 
@@ -66,7 +70,7 @@ def get_norm_total(machine_dict, machine_names, service_units):
 
 
 def read_xdusage_output(input_file, db_conn, machine_dict, current_date, setup=False):
-    print "hello"
+    #print "hello"
     date_string_format = "%Y-%m-%d %H:%M:%S.000"
 
     current_date_string = current_date.strftime(date_string_format)
@@ -76,6 +80,7 @@ def read_xdusage_output(input_file, db_conn, machine_dict, current_date, setup=F
         machine_info = []
         user_info = []
         machine_name = ''
+        date_string_format = "%Y-%m-%d"
         for line in fp:
             if 'Project' in line:
                 machine_name = line.strip().split()[1].split('/')[1]
@@ -99,7 +104,6 @@ def read_xdusage_output(input_file, db_conn, machine_dict, current_date, setup=F
                 if setup:
                     remaining = int(float(split[0].split('=')[1].replace(
                         ',', '')))
-
                 machine_info.append(
                     (machine_name, current_date_string, remaining))
 

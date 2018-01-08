@@ -55,7 +55,7 @@ def get_last_two_dates(conn, machine_name=''):
         # inner selection 1 - get any single machine name
         machine_name = ''' SELECT machine 
                                 From Machines 
-                                ORDER BY machine ASC 
+                                ORDER BY machine DESC
                                 LIMIT 1'''
         machine_name = '(' + machine_name + ')'
 
@@ -66,6 +66,7 @@ def get_last_two_dates(conn, machine_name=''):
                     LIMIT 1'''
     user_name = '(' + user_name + ')'
     # main selection - select last two dates for single user and single machine
+    
     selection_string = '''  SELECT date 
                             FROM Users 
                             WHERE Machine=%s
@@ -184,6 +185,7 @@ def calc_table_data(user_names, usages, num_entries=5):
 
 
 def plot_figures(machine_dict, machine_usage, change_user_usage, percent_user_usage, output_path='./'):
+    machine_dict['Total'] =  dict([('conversionFactor', 1),('outName', 'Total')])
     for machine_name in machine_dict.keys():
 
         plt.figure(figsize=(9.5, 6))
@@ -199,7 +201,7 @@ def plot_figures(machine_dict, machine_usage, change_user_usage, percent_user_us
                            machine_usage[machine_name]['usage'],
                            final_time_delta)
 
-        if machine_usage[machine_name]['usage'][-1] - machine_usage[machine_name]['usage'][0] == 0:
+        if machine_usage[machine_name]['usage'][-1] - machine_usage[machine_name]['usage'][0] == 0 or machine_name == 'Total':
             ax3.xaxis.set_visible(False)
             ax3.yaxis.set_visible(False)
             ax3.axison = False
@@ -236,8 +238,10 @@ def plot_machine_usage(axi, machine_name, machine_title, machine_dates, machine_
     axi.xaxis.set_major_locator(mdates.MonthLocator())
     axi.xaxis.set_major_formatter(mdates.DateFormatter('%b'))
     axi.set_ylabel('1000\'s of SUs')
+    if machine_name == 'Total':
+        axi.set_ylabel('1000\'s of NUs')
     axi.set_xlabel("")
-    axi.set_title(machine_name.upper())
+    axi.set_title(machine_title.upper())
     plt.setp(axi.get_xticklabels(), rotation=45, ha='right')
 
 
